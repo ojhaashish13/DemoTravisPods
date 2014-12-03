@@ -1,0 +1,18 @@
+.DS_Store
+
+# Cocoapods
+Podfile.lock
+Pods/
+
+# Xcode
+DerivedData/
+build/
+*.xcodeproj/project.xcworkspace/xcuserdata/**/*
+*.xcodeproj/xcuserdata/**/*
+*.xcworkspace
+
+# AppCode
+.idea/
+
+# Project specific
+scripts/config.sh

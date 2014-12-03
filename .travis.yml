@@ -1,0 +1,23 @@
+language: objective-c
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/TravisExample_Ad_Hoc.mobileprovision.enc  -d -a -out scripts/profile/TravisExample_Ad_Hoc.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a  -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a  -out scripts/certs/dist.p12
+- ./scripts/add-key.sh
+- ./scripts/update-bundle.sh
+script:
+- xcodebuild -workspace DemoTravisPods.xcworkspace -scheme DemoTravisPods -sdk iphoneos  -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+- xcodebuild test -workspace DemoTravisPods.xcworkspace  -scheme DemoTravisPods  -sdk  iphonesimulator ONLY_ACTIVE_ARCH=NO
+after_success:
+- ./scripts/sign-and-upload.sh
+after_script:
+- ./scripts/remove-key.sh
+env:
+  global:
+  - secure: g5x+iCGZXGPhUYiET1hePmRV1ie9psWwJ6SO0yIDxYfGk1OJlwza7jHDU2WqoeXcC0xUISBQiQ2Nyui4YbR4eIQa3pB4pDRYDNs4RlwePn4GGM64sq9LtbS9Q+hoZYHXUeQj15ENfYp6z7n1Aq/n6/Uz0xKzkQccul4JX//y9/o=
+  - APP_NAME="DemoProjectTravis"
+  - 'DEVELOPER_NAME="iPhone Distribution: V2 Solutions (JTKBCAGUVC)"'
+  - PROFILE_NAME="TravisExample_Ad_Hoc"
+  - secure: OnMQqAti6m7/x/hEytc0ZD9v3/2MI7WQCidwEixpfM0Iz0Rm5S4eK7tZn3bgIQtddz5KU5ZxKXHFO6Hrtp1sAuTbz6mJcBQRoY1yCckKSFHWKi6CqZ8WNziP8803kHY89mjHcRadR/SOrVj1r2xho+Rp8fIVQ5h2OysXoSxGYXA=
+  - secure: GbHf1nZrXrgaW7l0lCAmwbBylHmV2pP1IffOi/b85gADweSOESOlxitJa6gJztXEwR5yG1GPAciF+xBCB7Gf67A4oMa21jXbMj7nIOKtFAiYBAwAm9qYDPuPANlmAbBBMy0CkkKtC25mN2/60Yr5HGj8JSnhmaHBydf6dUcEFK0=
+  - secure: QXwp03apZGasNPBEZ5iLPBxnhSBi1FQlbk/Z0tNitKPVxwOHjSjwD2Fpcr3OXhKAuNoQX1i4Z/OlWz1QeE9b/0ir/xcK3Y/v7qeUreuc20v1CmXrFkQsY2QC7nIKVJkL0jgDjAtNhATASAUyamQxDBhl7e6U38ic00We+VsdoJE=
