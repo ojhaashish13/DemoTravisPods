@@ -19,7 +19,7 @@ after_script:
 - ./scripts/remove-key.sh
 env:
   global:
-  - APP_NAME="DemoProjectTravis"
+  - APP_NAME="DemoTravisPods"
   - 'DEVELOPER_NAME="iPhone Distribution: V2 Solutions (JTKBCAGUVC)"'
   - PROFILE_NAME="TravisExample_Ad_Hoc"
   - secure: AxYEIeCAoBR9+ZlVbBnpUK2rKwhDa3NfWfGF7PlURLwgyLfL4X8itIqCr3rqDvMmg1z19eNLevavNN2UG1WOA9JmA8FWg2fwCIMPEh9NEvBHveSDrX5I0Qpf/WXtD2TFmfaxWmssxuWVQnxVr6U20eppP0yybFLNfMjblrkOPAQ=
