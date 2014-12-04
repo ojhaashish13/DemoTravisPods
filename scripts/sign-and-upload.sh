@@ -8,6 +8,7 @@ if [[ "$TRAVIS_BRANCH" != "master" ]]; then
   exit 0
 fi
 
+
 # Thanks @djacobs https://gist.github.com/djacobs/2411095
 # Thanks @johanneswuerbach https://gist.github.com/johanneswuerbach/5559514
 
