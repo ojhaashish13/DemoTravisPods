@@ -27,8 +27,7 @@ RELEASE_DATE=`date '+%Y-%m-%d %H:%M:%S'`
 RELEASE_NOTES="Build: $TRAVIS_BUILD_NUMBER\nUploaded: $RELEASE_DATE"
 
 
-#if [ ! -z "$HOCKEY_APP_ID" ] && [ ! -z "$HOCKEY_APP_TOKEN" ]; then
-  echo "$HOCKEY_APP_ID$HOCKEY_APP_TOKEN"
+if [ ! -z "$HOCKEY_APP_ID" ] && [ ! -z "$HOCKEY_APP_TOKEN" ]; then
   echo "***************************"
   echo "* Uploading to Hockeyapp  *"
   echo "***************************"
@@ -42,5 +41,4 @@ RELEASE_NOTES="Build: $TRAVIS_BUILD_NUMBER\nUploaded: $RELEASE_DATE"
     -H "X-HockeyAppToken: $HOCKEY_APP_TOKEN" \
     https://rink.hockeyapp.net/api/2/apps/upload
   echo "Upload finish"
-#fi
-echo "end"
+fi
