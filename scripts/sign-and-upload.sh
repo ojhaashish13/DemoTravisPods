@@ -19,7 +19,9 @@ echo "*        Signing          *"
 echo "***************************"
 xcrun -log -sdk iphoneos PackageApplication "$OUTPUTDIR/$APP_NAME.app" -o "$OUTPUTDIR/$APP_NAME.ipa" -sign "$DEVELOPER_NAME" -embed "$PROVISIONING_PROFILE"
 
+echo "zip start"
 zip -r -9 "$OUTPUTDIR/$APP_NAME.app.dsym.zip" "$OUTPUTDIR/$APP_NAME.app.dSYM"
+echo "zip end"
 
 RELEASE_DATE=`date '+%Y-%m-%d %H:%M:%S'`
 RELEASE_NOTES="Build: $TRAVIS_BUILD_NUMBER\nUploaded: $RELEASE_DATE"
@@ -40,3 +42,4 @@ if [ ! -z "$HOCKEY_APP_ID" ] && [ ! -z "$HOCKEY_APP_TOKEN" ]; then
     https://rink.hockeyapp.net/api/2/apps/upload
   echo "Upload finish"
 fi
+echo "end"
